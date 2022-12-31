@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Comment-box</title>
+</head>
+
+<body>
+
+    <label for="text1">Name:</label>
+    <input id="text1" type="text" placeholder="Your name here">
+    <label for="text2">Email:</label>
+    <input id="text2" type="text" placeholder="Your email here">
+    <label for="text3">Comment:</label>
+    <textarea id="text3" type="text" placeholder="Your comment here"></textarea>
+    <p>
+        <span id="wordCount">0</span>/140 Characters
+    </p>
+    <input type="button" id="btn1" value="Submit"></input>
+    <div class="output" id="output1"></div>
+
+    <script>
+
+        const typing3 = document.getElementById('text3');
+        const typing1 = document.getElementById('text1');
+        const typing2 = document.getElementById('text2');
+        const btn = document.getElementById('btn1');
+
+        function fun1() {
+
+            let nameTyped = document.getElementById('text1')
+            let emailTyped = document.getElementById('text2')
+            let commentTyped = document.getElementById('text3')
+
+            if (nameTyped.value.length && commentTyped.value.length > 0) {
+                var tag2 = document.createElement("p2");
+                var text2 = document.createTextNode(typing3.value);
+                tag2.appendChild(text2);
+                var element = document.getElementById("output1");
+                element.prepend(tag2);
+
+                var tag3 = document.createElement("p3");
+                var currentdate = new Date().toLocaleString();
+                var text3 = document.createTextNode(currentdate);
+                tag3.appendChild(text3);
+                var element = document.getElementById("output1");
+                element.prepend(tag3);
+
+                var tag1 = document.createElement("p1");
+                var text1 = document.createTextNode(typing1.value);
+                tag1.appendChild(text1);
+                var element = document.getElementById("output1");
+                element.prepend(tag1);
+            }
+        }
+
+        btn.addEventListener('click', fun1);
+
+        let myText = document.getElementById("text3");
+        let wordCount = document.getElementById("wordCount");
+
+        myText.addEventListener("keyup", function () {
+            let chars = myText.value.split('');
+            wordCount.innerText = chars.length;
+
+            if (chars.length > 140) {
+                document.getElementById("text3").style.backgroundColor = "red";
+            } else {
+                document.getElementById("text3").style.backgroundColor = "white";
+            }
+
+        });
+
+        const clearbtn = document.getElementById('btn1');
+
+        clearbtn.addEventListener('click', function handleClick(event) {
+
+            event.preventDefault();
+
+            const inputs = document.querySelectorAll('#text1, #text2, #text3');
+
+            inputs.forEach(input => {
+                input.value = '';
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
